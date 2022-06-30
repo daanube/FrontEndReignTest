@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Articles } from 'src/app/Models/Articles';
 import { Response } from 'src/app/Models/Response';
-import { ArticlesService } from 'src/app/Services/ArticlesService';
+import { ArticleService } from 'src/app/Services/articles.service';
 
 @Component({
   selector: 'app-news-list',
@@ -10,13 +10,13 @@ import { ArticlesService } from 'src/app/Services/ArticlesService';
 })
 
 export class NewsListComponent implements OnInit {
-  @Input() articlesList: Array<Articles>[]=[];
+  @Input() articlesList: Array<Articles>=[];
   @Input() nbPages:number=0;
   @Input() hitsPerPage:number=0;
-  response: Response = new Response;
+  apiResponse: Response = new Response;
 
   constructor(
-    private articlesService: ArticlesService
+    private _articleService: ArticleService
   ) {
     
   }
@@ -27,11 +27,13 @@ export class NewsListComponent implements OnInit {
 
 
   getApiResponse(query:string=""){
-    this.articlesService.getApiResponse(query)).subscribe(response => {
+    this._articleService.getApiResponse(query).subscribe((response: Response) => {
       this.articlesList = response.hits;
-      this.nbPages =response.nbPages;
-      this.hitsPerPage =response.hitsPerPage;
-    })
+      this.apiResponse.nbPages = response.nbPages;
+      this.apiResponse.hitsPerPage = response.hitsPerPage;
+
+      return this.apiResponse;
+    });
 
   }
 }

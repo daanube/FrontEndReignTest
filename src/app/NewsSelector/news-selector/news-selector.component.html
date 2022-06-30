@@ -16,15 +16,15 @@
             </mat-form-field> -->
 
             <select id="newsTopicSelect" name="newsTopicSelect" #newsTopicSelect (change)="getApiResponse(newsTopicSelect.value)">
-                <option value="0" disabled>Select your news</option>
+                <option value="-1" >Select your news</option>
                 <option value="angular">
                     <span><img src="../../assets/images/image-138.png"> Angular</span>
                 </option>
-                <option value="vue">
-                    <span><img src="../../assets/images/image-138.png"> Vue</span>
-                </option>
                 <option value="react">
                     <span><img src="../../assets/images/image-138.png"> React</span>
+                </option>
+                <option value="vue">
+                    <span><img src="../../assets/images/image-138.png"> Vuejs</span>
                 </option>
             </select>
         </div>

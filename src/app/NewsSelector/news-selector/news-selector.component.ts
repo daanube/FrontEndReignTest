@@ -32,7 +32,7 @@ export class NewsSelectorComponent implements OnInit {
     this._articleService.getApiResponse(this.query).subscribe((response: Response) => {
       this.apiResponse = response;
       this.apiResponseChange.emit(this.apiResponse);
-      debugger;
+      // debugger;
 
     });
 

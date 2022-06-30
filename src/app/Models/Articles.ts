@@ -5,4 +5,5 @@ export class Articles {
     story_id: number = 0;
     story_title: string="";
     story_url: string="";
+    isFav: boolean=false;
 }

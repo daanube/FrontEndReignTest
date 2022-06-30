@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Articles } from 'src/app/Models/Articles';
 import { Response } from 'src/app/Models/Response';
 import { ArticleService } from 'src/app/Services/articles.service';
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-news-list',
@@ -27,7 +28,8 @@ export class NewsListComponent implements OnInit {
   }
 
   initArticlesBoard(response: Response){
-    debugger;
+    this.articlesList = response.hits;
+    // debugger;
   };
 
 }

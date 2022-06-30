@@ -32,7 +32,7 @@
     </div>
     
     <div class="row">
-        <app-news-list [query] = query></app-news-list>
+        <app-news-list *ngIf="apiResponse.hits.length > 0" [apiResponse] = apiResponse></app-news-list>
     </div>
 
 

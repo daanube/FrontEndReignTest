@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Articles } from 'src/app/Models/Articles';
 import { Response } from 'src/app/Models/Response';
@@ -17,7 +17,8 @@ export class NewsSelectorComponent implements OnInit {
   @Input() nbPages: number=0;
   @Input() hitsPerPage: number=0;
   apiResponse: Response = new Response;
-
+  @Output() apiResponseChange = new EventEmitter<Response>();
+  
   constructor(
     private _articleService: ArticleService
   ) { }
@@ -27,14 +28,12 @@ export class NewsSelectorComponent implements OnInit {
   
   // getApiResponse(query:string=""){
   getApiResponse(e: string){
-    debugger;
     this.query = e;
     this._articleService.getApiResponse(this.query).subscribe((response: Response) => {
-      this.articlesList = response.hits;
-      this.apiResponse.nbPages = response.nbPages;
-      this.apiResponse.hitsPerPage = response.hitsPerPage;
+      this.apiResponse = response;
+      this.apiResponseChange.emit(this.apiResponse);
+      debugger;
 
-      return this.apiResponse;
     });
 
   }

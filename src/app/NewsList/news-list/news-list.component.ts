@@ -15,26 +15,19 @@ export class NewsListComponent implements OnInit {
   @Input() articlesList: Array<Articles>=[];
   @Input() nbPages: number=0;
   @Input() hitsPerPage: number=0;
-  apiResponse: Response = new Response;
+  @Input() apiResponse: Response = new Response;
 
   constructor(
     private _articleService: ArticleService
   ) {
-    
   }
 
   ngOnInit(): void {
+    this.initArticlesBoard(this.apiResponse);
   }
 
-  getApiResponse(query:string=""){
-    this.query = this.newsTopicSelect.value;
-    this._articleService.getApiResponse(query).subscribe((response: Response) => {
-      this.articlesList = response.hits;
-      this.apiResponse.nbPages = response.nbPages;
-      this.apiResponse.hitsPerPage = response.hitsPerPage;
+  initArticlesBoard(response: Response){
+    debugger;
+  };
 
-      return this.apiResponse;
-    });
-
-  }
 }

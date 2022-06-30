@@ -12,7 +12,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { ArticlesService } from './Services/ArticlesService';
+import { ArticleService } from './Services/articles.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -27,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,7 +5,7 @@
     
     <div class="row">
         <div class="col l6 m6 s6">
-             <mat-form-field appearance="fill">
+             <!-- <mat-form-field appearance="fill">
                 <mat-select placeholder="Select your news" >
                     <mat-option value="">
                         <span><img src="../../assets/images/image-138.png"> Angular</span>
@@ -13,22 +13,26 @@
                     <mat-option value=""></mat-option>
                     <mat-option value=""></mat-option>
                 </mat-select>
-            </mat-form-field>
+            </mat-form-field> -->
 
-                <select >
-                    <option value="0">Select your news</option>
-                    <option value="">
-                        <span><img src="../../assets/images/image-138.png"> Angular</span>
-                    </option>
-                    <option value=""></option>
-                    <option value=""></option>
-                </select>
+            <select id="newsTopicSelect" name="newsTopicSelect" #newsTopicSelect (change)="getApiResponse(newsTopicSelect.value)">
+                <option value="0" disabled>Select your news</option>
+                <option value="angular">
+                    <span><img src="../../assets/images/image-138.png"> Angular</span>
+                </option>
+                <option value="vue">
+                    <span><img src="../../assets/images/image-138.png"> Vue</span>
+                </option>
+                <option value="react">
+                    <span><img src="../../assets/images/image-138.png"> React</span>
+                </option>
+            </select>
         </div>
         
     </div>
     
     <div class="row">
-        <app-news-list ></app-news-list>
+        <app-news-list [query] = query></app-news-list>
     </div>
 
 

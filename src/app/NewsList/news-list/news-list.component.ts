@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Articles } from 'src/app/Models/Articles';
 import { Response } from 'src/app/Models/Response';
 import { ArticleService } from 'src/app/Services/articles.service';
@@ -10,9 +10,11 @@ import { ArticleService } from 'src/app/Services/articles.service';
 })
 
 export class NewsListComponent implements OnInit {
+  @ViewChild("newsTopicSelect") newsTopicSelect: any;
+  @Input() query: string="";
   @Input() articlesList: Array<Articles>=[];
-  @Input() nbPages:number=0;
-  @Input() hitsPerPage:number=0;
+  @Input() nbPages: number=0;
+  @Input() hitsPerPage: number=0;
   apiResponse: Response = new Response;
 
   constructor(
@@ -21,12 +23,11 @@ export class NewsListComponent implements OnInit {
     
   }
 
-
   ngOnInit(): void {
   }
 
-
   getApiResponse(query:string=""){
+    this.query = this.newsTopicSelect.value;
     this._articleService.getApiResponse(query).subscribe((response: Response) => {
       this.articlesList = response.hits;
       this.apiResponse.nbPages = response.nbPages;

@@ -35,31 +35,12 @@ export class NewsListComponent implements OnInit {
 
   initArticlesBoard(response: Response){
     this.articlesList = response.hits;
-    this.articlesList.forEach(element => {
-      if (element.author == null 
-        || element.created_at == null
-        || element.story_id == null
-        || element.story_title == null
-        || element.story_url == null ) {
-          this.articlesList.splice(this.articlesList.indexOf(element),1)
-      }
-    });
-    // debugger;
+    debugger;
+    
   };
 
   toggleFav(e: any, id: number, fav: boolean) {
-
-    //evaluar si fav es true
-    //si lo es, guardarlo en el array
-    //si no, buscarlo y eliminarlo del array
     // debugger;
-
-
-
-
-
-
-
 
     if (fav) {
       if (this.favsArray.indexOf(id) == -1 ) {
@@ -81,22 +62,5 @@ export class NewsListComponent implements OnInit {
       console.log(this.favsArray);
       }
     }
-
-    // if(localStorage.getItem("favsArray")==undefined){
-    //   if (this.favsArray.length==0) {
-    //       this.favsArray.push({id:fav});
-    //       localStorage.setItem("favsArray",JSON.stringify(this.favsArray));
-    //   } else {
-    //     for (let i = 0; i < this.favsArray.length; i++) {
-    //       if (this.favsArray[i]==={id:fav}) {
-    //         this.favsArray[i] = {id:!fav};
-    //       }
-          
-    //     }
-    //   }
-      
-    // }
-    
-  // }
 
 }

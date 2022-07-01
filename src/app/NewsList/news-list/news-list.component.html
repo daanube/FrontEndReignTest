@@ -26,14 +26,14 @@
                     </div>
                     <div class="col l2 m2 s2 favBtn">
                         <!-- <ng-template #fav [isFav]="articles.isFav" [ngIf]="articles.isFav" [ngIfElse]="notFav"> -->
-                        <div #fav (isFav)="isFav" *ngIf="articles.isFav" id="{{articles.story_id + 'true'}}">
+                        <div #fav (isFav)="isFav" *ngIf="this.favsArray.indexOf(articles.story_id) != -1" >
                             <!-- <img style="cursor: pointer;" src="../../../assets/images/iconmonstr-favorite-3.png" (click)="toggleFav($event,articles.story_id,false)"> -->
                             <img style="cursor: pointer;" src="{ } ../../../assets/images/iconmonstr-favorite-3.png" (click)="toggleFav($event,articles.story_id,false)">
                         </div>
                         <!-- </ng-template> -->
                         
                         <!-- <ng-template #notFav [isFav]="articles.isFav"> -->
-                        <div #notFav (isFav)="isFav" *ngIf="!articles.isFav" id="{{articles.story_id + 'false'}}">
+                        <div #notFav (isFav)="isFav" *ngIf="this.favsArray.indexOf(articles.story_id) == -1" id="{{articles.story_id + 'false'}}">
                             <img style="cursor: pointer;" src="../../../assets/images/iconmonstr-favorite-2.png" (click)="toggleFav($event,articles.story_id,true)">
                         </div>
                         <!-- </ng-template> -->

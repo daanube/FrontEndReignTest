@@ -26,16 +26,38 @@ export class NewsSelectorComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  // getApiResponse(query:string=""){
   getApiResponse(e: string){
+    debugger;
     this.query = e;
     this._articleService.getApiResponse(this.query).subscribe((response: Response) => {
       this.apiResponse = response;
+      for (let i = 0; i < this.apiResponse.hits.length; i++) {
+        const element = this.apiResponse.hits[i];
+        if (element.author == null || element.created_at == null || element.story_id == null || element.story_title == null || element.story_url == null
+          // || element.author === "" || element.story_title === "" || element.story_url === ""
+        ) {
+            this.apiResponse.hits.splice(this.apiResponse.hits.indexOf(element),1);
+        }
+        if (this.apiResponse.hits.find(x => x.story_id == element.story_id )) {
+          this.apiResponse.hits.splice(this.apiResponse.hits.indexOf(element),1);
+        }
+      }
+
+      // this.apiResponse.hits.forEach(element => {
+      //   if (element.author === null || element.created_at === null || element.story_id === null || element.story_title === null || element.story_url === null
+      //   // || element.author === "" || element.story_title === "" || element.story_url === ""
+      //    ) {
+      //       this.apiResponse.hits.splice(this.apiResponse.hits.indexOf(element),1);
+      //   }
+      //   if (this.apiResponse.hits.find(x => x.story_id == element.story_id )) {
+      //     this.apiResponse.hits.splice(this.apiResponse.hits.indexOf(element),1);
+      //   }
+      // });
+
       this.apiResponseChange.emit(this.apiResponse);
-      // debugger;
-
+      console.log(e);
+      console.log(this.apiResponse);
     });
-
   }
 
 }

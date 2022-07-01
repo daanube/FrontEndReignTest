@@ -12,24 +12,31 @@
             ">
                 <div class="row" style="display: flex; flex-direction: row;">
                     <div class="col l10 m10 s10">
-                        <div class="row">
-                            <div class="col l12 m12 s12">
-                                <img src="../../../assets/images/iconmonstr-time-2.png">
-                                <span>{{articles.created_at}} by {{articles.author}}</span>
+                       <a href="{{articles.story_url}}" target="_blank">
+                             <div class="row">
+                                <div class="col l12 m12 s12">
+                                    <img src="../../../assets/images/iconmonstr-time-2.png">
+                                    <span>{{articles.created_at}} by {{articles.author}}</span>
+                                </div>
+                                <div class="col l12 m12 s12">
+                                    <span> {{articles.story_title}}</span>
+                                </div>
                             </div>
-                            <div class="col l12 m12 s12">
-                                <span> {{articles.story_title}}</span>
-                            </div>
-                        </div>
+                        </a>
                     </div>
-                    <div class="col l2 m2 s2">
-                        <ng-template [ngIf]="articles.isFav" [ngIfElse]="notFav">
-                            <img src="../../../assets/images/iconmonstr-favorite-3.png">
-                        </ng-template>
+                    <div class="col l2 m2 s2 favBtn">
+                        <!-- <ng-template #fav [isFav]="articles.isFav" [ngIf]="articles.isFav" [ngIfElse]="notFav"> -->
+                        <div #fav (isFav)="isFav" *ngIf="articles.isFav" id="{{articles.story_id + 'true'}}">
+                            <!-- <img style="cursor: pointer;" src="../../../assets/images/iconmonstr-favorite-3.png" (click)="toggleFav($event,articles.story_id,false)"> -->
+                            <img style="cursor: pointer;" src="{ } ../../../assets/images/iconmonstr-favorite-3.png" (click)="toggleFav($event,articles.story_id,false)">
+                        </div>
+                        <!-- </ng-template> -->
                         
-                        <ng-template #notFav>
-                            <img src="../../../assets/images/iconmonstr-favorite-2.png">
-                        </ng-template>
+                        <!-- <ng-template #notFav [isFav]="articles.isFav"> -->
+                        <div #notFav (isFav)="isFav" *ngIf="!articles.isFav" id="{{articles.story_id + 'false'}}">
+                            <img style="cursor: pointer;" src="../../../assets/images/iconmonstr-favorite-2.png" (click)="toggleFav($event,articles.story_id,true)">
+                        </div>
+                        <!-- </ng-template> -->
                     </div>
 
 

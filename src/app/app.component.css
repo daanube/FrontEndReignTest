@@ -1,0 +1,26 @@
+.content {
+    margin-left: 150px !important; 
+    margin-right: 150px !important; 
+    padding: 0;
+}
+
+.btnContainer {
+    width: 50%; 
+    display: flex; 
+    margin: 0 auto; 
+    justify-content: center;
+}
+
+@media screen and (max-width: 767px) {
+    .content {
+        margin-left: 30px !important; 
+        margin-right: 30px !important;
+    }
+    .btnContainer {
+        width: 100%; 
+        
+    }
+    .Rectangle-2-Copy {
+        padding-left: 70px;
+    }
+}

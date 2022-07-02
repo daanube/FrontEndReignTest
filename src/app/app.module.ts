@@ -5,12 +5,7 @@ import { AppComponent } from './app.component';
 import { NewsListComponent } from './NewsList/news-list/news-list.component';
 import { NewsSelectorComponent } from './NewsSelector/news-selector/news-selector.component';
 
-import { MatSelectModule } from '@angular/material/select';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { ArticleService } from './Services/articles.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -24,10 +19,6 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
     HttpClientModule
   ],
   providers: [],

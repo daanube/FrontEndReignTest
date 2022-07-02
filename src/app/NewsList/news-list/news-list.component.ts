@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { Articles } from 'src/app/Models/Articles';
-import { Response } from 'src/app/Models/Response';
-import { ArticleService } from 'src/app/Services/articles.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Articles } from 'src/app/Models/Articles';                                           // Model import
+import { Response } from 'src/app/Models/Response';                                           // Model import
 
 @Component({
   selector: 'app-news-list',
@@ -12,59 +10,41 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 export class NewsListComponent implements OnInit {
 
-  @ViewChild("newsTopicSelect") newsTopicSelect: any;
-  @Input() query: string="";
-  @Input() articlesList: Array<Articles>=[];
-  @Input() nbPages: number=0;
-  @Input() hitsPerPage: number=0;
-  @Input() apiResponse: Response = new Response;
+  @Input() apiResponse: Response = new Response;                                // variable declared to store the API response coming from the parent component
+  @Input() articlesList: Array<Articles>=[];                                    // variable declared to store the array of articles coming from the parent component
+  @Input() isFav: boolean = false;                                              // variable declared to store the value use to determine if an article is a favourite or not
+  @Output() isFavChange = new EventEmitter<boolean>();                          // variable declared to tell the component that some change happened
+  favsArray: Array<Object>=[];                                                  // variable declared to store the array of favorite articles
+  stringifiedArray: any;                                                        // variable declared to store the array of favorite articles as a string to be sotre in the localStorage
   
-  @Input() isFav: boolean = false;
-  @Output() isFavChange = new EventEmitter<boolean>();
-
-  favsArray: Array<Object>=[];
-  stringifiedArray: any;
-  
-  constructor(
-    // private _articleService: ArticleService,
-  ) {
+  constructor() {
   }
 
   ngOnInit(): void {
-    this.initArticlesBoard(this.apiResponse);
+    this.initArticlesBoard(this.apiResponse);                                   // calling the method that initialises the articles board
   }
-  
-  // ngAfterViewInit(): void {
-  //   this.initArticlesBoard(this.apiResponse);
-  // }
 
   initArticlesBoard(response: Response){
-    this.articlesList = [];
-    this.articlesList = response.hits;
-    debugger;
-    
+    this.articlesList = [];                                                     // everytime we initialise the articles board, the articles array is initialised too 
+    this.articlesList = response.hits;                                          // assigning the articles array form the parent component to the internal variable
   };
 
-  toggleFav(id: number, fav: boolean) {
-    // debugger;
+  toggleFav(id: number, fav: boolean) {                                         // method that stores in the localStorage the id of the favorite articles
 
-    if (fav) {
-      if (this.favsArray.indexOf(id) == -1 ) {
+    if (fav) {                                                                  // we receive a boolean variable and the id of the current article
+      if (this.favsArray.indexOf(id) == -1 ) {                                  // if the value is 'true' and the id is not in the array already we add it
         this.favsArray.push(id);
-        localStorage.setItem("favsArray",JSON.stringify(this.favsArray));
-        console.log(this.favsArray);
-        this.isFavChange.emit(this.isFav = fav);
-        console.log(this.isFav);
+        localStorage.setItem("favsArray",JSON.stringify(this.favsArray));       // the array is transformed into a string to be store in the localStorage
+        this.isFavChange.emit(this.isFav = fav);                                // we tell the component that the variable changed
       }
 
-    } else {
-      this.stringifiedArray = localStorage.getItem("favsArray");
-      this.favsArray = [];
-      this.favsArray = JSON.parse(this.stringifiedArray);
-        if (this.favsArray.indexOf(id) != -1) {
-          this.favsArray.splice(this.favsArray.indexOf(id), 1);
-        }
-      console.log(this.favsArray);
+    } else {                                                                    // if the value is 'false'
+      this.stringifiedArray = localStorage.getItem("favsArray");                // we read the variable that stored the stringified array in the localStorage
+      this.favsArray = [];                                                      // the favorites array is emptied
+      this.favsArray = JSON.parse(this.stringifiedArray);                       // and we transform ths string back to an array, asignning it to the favorites array
+      if (this.favsArray.indexOf(id) != -1) {                                   //  we llok for the id of the current article in the array  
+        this.favsArray.splice(this.favsArray.indexOf(id), 1);                   // and it gets removed from it
+      }
       }
     }
 

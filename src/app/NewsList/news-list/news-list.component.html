@@ -2,15 +2,8 @@
 <div class="titleCards">
     <div class="row" style="display: flex; flex-wrap: wrap;">
         <div *ngFor="let articles of articlesList">
-            <div class="col l6 m6 s12" style="display: flex;
-                flex-direction: row;
-                width: 600px;
-                padding: 30px;
-                margin: 20px;
-                border: 1px solid black;
-                border-radius: 10px;
-            ">
-                <div class="row" style="display: flex; flex-direction: row;">
+            <div class="col l6 m6 s12" class="articlesContainer">
+                <div class="row" class="articleRow">
                     <div class="col l10 m10 s10">
                        <a href="{{articles.story_url}}" target="_blank">
                              <div class="row">

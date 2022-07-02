@@ -1,59 +1,27 @@
 
-
-
 <div class="content" role="main" style="margin-left: 0px !important; margin-right: 0px !important; padding: 0;">
     
     <div class="row">
         <div class="col l6 m6 s6">
-             <!-- <mat-form-field appearance="fill">
-                <mat-select placeholder="Select your news" >
-                    <mat-option value="">
-                        <span><img src="../../assets/images/image-138.png"> Angular</span>
-                    </mat-option>
-                    <mat-option value=""></mat-option>
-                    <mat-option value=""></mat-option>
-                </mat-select>
-            </mat-form-field> -->
-
+           
             <select id="newsTopicSelect" name="newsTopicSelect" #newsTopicSelect (change)="getApiResponse(newsTopicSelect.value)">
                 <option value="-1" >Select your news</option>
                 <option value="angular">
                     <span><img src="../../assets/images/image-138.png"> Angular</span>
                 </option>
                 <option value="reactjs">
-                    <span><img src="../../assets/images/image-138.png"> ReactJs</span>
+                    <span><img src="../../assets/images/image-140.png"> ReactJs</span>
                 </option>
                 <option value="vuejs">
-                    <span><img src="../../assets/images/image-138.png"> VueJs</span>
+                    <span><img src="../../assets/images/image-141.png"> VueJs</span>
                 </option>
             </select>
         </div>
-<!--         
-        <ng-select
-            appearance="outline"
-            formControlName="productId"
-            placeholder="Select an option"
-        >
-            <ng-option value="0">Select an asdasdsad</ng-option>
-        </ng-select> -->
-
 
     </div>
     
     <div class="row">
         <app-news-list #appNewsList [apiResponse] = apiResponse></app-news-list>
     </div>
-
-
-    <!-- <mat-form-field>
-        <mat-label>Cars</mat-label> 
-        <select matNativeControl>
-            <option value="0">Select your news</option>
-            <option value="">
-                <span><img src="../../assets/images/image-138.png"> Angular</span>
-            </option>
-          <option value="audi">Audi</option>
-        </select>
-      </mat-form-field>  -->
 
 </div>

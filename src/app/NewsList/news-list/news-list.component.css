@@ -1,0 +1,41 @@
+.articlesContainer {
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+    padding: 30px;
+    margin: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.articlesContainer:hover {
+    opacity: 70%;
+}
+
+.articleRow {
+    display: flex;
+    flex-direction: row;
+}
+
+.favBtn {
+    background-color: lightgrey;
+}
+
+.titleCards {
+    margin: 0 auto;
+    width: 90%;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+
+@media screen and (max-width: 767px) {
+    .articlesContainer {
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 20px;
+    }
+}
+

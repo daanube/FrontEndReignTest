@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { Articles } from 'src/app/Models/Articles';
 import { Response } from 'src/app/Models/Response';
 import { ArticleService } from 'src/app/Services/articles.service';
-import { NgModule } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-news-list',
@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 })
 
 export class NewsListComponent implements OnInit {
+
   @ViewChild("newsTopicSelect") newsTopicSelect: any;
   @Input() query: string="";
   @Input() articlesList: Array<Articles>=[];
@@ -25,21 +26,26 @@ export class NewsListComponent implements OnInit {
   stringifiedArray: any;
   
   constructor(
-    private _articleService: ArticleService
+    // private _articleService: ArticleService,
   ) {
   }
 
   ngOnInit(): void {
     this.initArticlesBoard(this.apiResponse);
   }
+  
+  // ngAfterViewInit(): void {
+  //   this.initArticlesBoard(this.apiResponse);
+  // }
 
   initArticlesBoard(response: Response){
+    this.articlesList = [];
     this.articlesList = response.hits;
     debugger;
     
   };
 
-  toggleFav(e: any, id: number, fav: boolean) {
+  toggleFav(id: number, fav: boolean) {
     // debugger;
 
     if (fav) {
@@ -55,9 +61,8 @@ export class NewsListComponent implements OnInit {
       this.stringifiedArray = localStorage.getItem("favsArray");
       this.favsArray = [];
       this.favsArray = JSON.parse(this.stringifiedArray);
-        // if (this.favsArray.findIndex(x => x == id) != -1) {
         if (this.favsArray.indexOf(id) != -1) {
-          this.favsArray.splice(this.favsArray.findIndex(x => x == id))
+          this.favsArray.splice(this.favsArray.indexOf(id), 1);
         }
       console.log(this.favsArray);
       }
